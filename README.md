@@ -1,9 +1,5 @@
 # Monopoly
 
-[![PyPI - Version](https://img.shields.io/pypi/v/monopoly.svg)](https://pypi.org/project/monopoly)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/monopoly.svg)](https://pypi.org/project/monopoly)
-
-
 ![game](docs/readme/game.gif)
 -----
 
