@@ -1,0 +1,45 @@
+erDiagram
+    game_sessions ||--o{ players : has
+    game_sessions ||--o{ spaces : defines
+    game_sessions ||--o{ propertystates : tracks
+    game_sessions ||--o{ transactions : logs
+
+    players {
+        int id PK
+        int game_id FK
+        string name
+        int money
+        int position
+        bool is_active
+        int turn_order
+    }
+
+    spaces {
+        int id PK
+        int game_id FK
+        int sequence_order
+        string name
+        string type
+        string description
+        int purchase_cost
+        int base_rent
+        int event_amount
+        int move_target
+    }
+
+    propertystates {
+        int id PK
+        int game_id FK
+        int space_id FK
+        int owner_id FK
+        int improvement_count
+    }
+
+    transactions {
+        int id PK
+        int game_id FK
+        int player_id FK
+        int amount
+        string description
+        datetime created_at
+    }

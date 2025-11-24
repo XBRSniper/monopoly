@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "monopoly"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "zer0f8th", email = "245779294+XBRSniper@users.noreply.github.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "ruff>=0.14.6",
+  "pydantic>=2.0.0",
+  "psycopg[binary]>=3.0.0",
+  "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+monopoly = "monopoly.cli.main:main"
+
+
+[project.urls]
+Documentation = "https://github.com/XBRSniper/monopoly#readme"
+Issues = "https://github.com/XBRSniper/monopoly/issues"
+Source = "https://github.com/XBRSniper/monopoly"
+
+[tool.hatch.version]
+path = "src/monopoly/__about__.py"
+
+[tool.hatch.envs.default.scripts]
+lint = "ruff check src"
+format = "ruff format src"
+lint-fix = [
+  "ruff check src --fix",
+  "ruff format src"
+]
+monopoly = "python3 -m monopoly"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/monopoly tests}"
+
+
+
+[tool.coverage.run]
+source_pkgs = ["monopoly", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/monopoly/__about__.py",
+]
+
+[tool.coverage.paths]
+monopoly = ["src/monopoly", "*/monopoly/src/monopoly"]
+tests = ["tests", "*/monopoly/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
